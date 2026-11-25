@@ -17,7 +17,7 @@ npm run build      # static site in dist/
 
 ## Deploy
 
-Infrastructure is Terraform in [infra/](infra/): a private S3 bucket, CloudFront with security headers, and a GitHub Actions deploy role (OIDC, no stored keys). You run Terraform; GitHub Actions only uploads the build.
+Infrastructure is Terraform in [infra/](infra/): a private S3 bucket, CloudFront with AWS's managed security headers and a rate-limiting firewall, and a GitHub Actions deploy role (OIDC, no stored keys). You run Terraform; GitHub Actions only uploads the build.
 
 1. Create the GitHub repository and push `main`.
 2. Find the repository's OIDC subject, `owner@ownerId/name@repoId`. The repo id is `gh api repos/OWNER/NAME --jq .id` or the `id` field at `https://api.github.com/repos/OWNER/NAME`.
@@ -46,6 +46,19 @@ The deploy job is skipped until `S3_BUCKET` is set, so CI passes before any of t
 1. Set `domain_name` in `terraform.tfvars`.
 2. `terraform apply -target=aws_acm_certificate.site`, then add the record from `terraform output certificate_validation_record` at your DNS host.
 3. `terraform apply` (it waits for the certificate), then add the record from `terraform output site_dns_record`.
+
+### Cap the bill
+
+By default CloudFront is pay-as-you-go: no charge per distribution, but no ceiling either if someone floods the site. The free flat-rate plan has no overage charges (1 million requests and 100 GB a month included; beyond that AWS may serve traffic from fewer locations instead of billing). The Terraform is already shaped for it: AWS's managed security headers and the web ACL the plan requires. Subscribing is one command after `terraform apply`:
+
+```sh
+aws pricing-plan-manager create-subscription --region us-east-1 \
+  --plan-family CloudFront --plan-tier FREE \
+  --resource-arns $(terraform output -raw flat_rate_plan_resources)
+aws pricing-plan-manager list-subscriptions --region us-east-1   # status should be ACTIVE
+```
+
+Until that subscription is active the web ACL is billed at normal AWS WAF rates (about $6 a month, pro rata). An account allows three free plans, and accounts on the AWS Free Tier are not eligible. Details: [CloudFront flat-rate pricing plans](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/flat-rate-pricing-plan.html).
 
 ### Renaming the repository
 

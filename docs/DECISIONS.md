@@ -41,7 +41,8 @@ Known limits: rotating inertia of the engine and wheels is ignored, so results r
 | Loaded logs are stored in IndexedDB, small settings in localStorage | A reload should not lose a session. Logs are too large for localStorage. The JSON backup covers vehicles, settings and column mappings, not logs. |
 | Plain Svelte 5 + Vite, no SvelteKit | One screen, no routes, no server rendering. |
 | S3 + CloudFront via Terraform; Actions only uploads | Infrastructure changes stay deliberate; the deploy role can touch one bucket and one distribution. |
-| `connect-src 'none'` in the Content-Security-Policy | The browser itself enforces that logs cannot be sent anywhere. |
+| `connect-src 'none'` in the Content-Security-Policy, set as a `<meta>` tag at build | The browser itself enforces that logs cannot be sent anywhere. It is in the page, not a response header, because CloudFront's free flat-rate plan only allows AWS's managed header policies. A test checks a request from the built page is refused. |
+| CloudFront free flat-rate plan, with AWS's managed security headers and a one-rule web ACL | Caps the bill: the plan has no overage charges. The cost is weaker headers than a custom policy: framing allowed from the same site only (was: never), no Permissions-Policy, no Cross-Origin-Opener-Policy, HSTS for one year without subdomains (was: two years with). |
 | Dyno scale: Dynojet ×1.00, Mustang ×0.90, or a custom factor | People compare against the kind of dyno they know. The factors are rough conventions, not measurements: the calculation works like an inertia dyno (power from accelerating a known mass), so that is the unscaled case, and load-bearing dynos commonly read about a tenth lower. The scale in use is printed on the chart and the export. |
 | No analytics, ads, accounts or update checks | Nothing leaves the browser. |
 

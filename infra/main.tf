@@ -112,46 +112,50 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_protocol                  = "sigv4"
 }
 
-resource "aws_cloudfront_response_headers_policy" "security" {
-  name = "${var.project}-security-headers"
+# CloudFront's free flat-rate plan (no overage charges) only allows AWS's managed header policies, so this is
+# theirs, not ours: HSTS for a year, nosniff, X-Frame-Options SAMEORIGIN, and a referrer policy.
+# The content security policy lives in the page itself (vite.config.ts).
+data "aws_cloudfront_response_headers_policy" "security" {
+  name = "Managed-SecurityHeadersPolicy"
+}
 
-  security_headers_config {
-    strict_transport_security {
-      access_control_max_age_sec = 63072000
-      include_subdomains         = true
-      preload                    = false
-      override                   = true
+# The flat-rate plan requires a web ACL on the distribution and covers its cost. One rule: block any single
+# address that sends more than 500 requests in five minutes (a full page load is about ten).
+resource "aws_wafv2_web_acl" "site" {
+  provider = aws.us_east_1 # CloudFront web ACLs live in us-east-1
+  name     = "${var.project}-site"
+  scope    = "CLOUDFRONT"
+
+  default_action {
+    allow {}
+  }
+
+  rule {
+    name     = "rate-limit"
+    priority = 1
+
+    action {
+      block {}
     }
-    content_type_options {
-      override = true
+
+    statement {
+      rate_based_statement {
+        limit              = 500
+        aggregate_key_type = "IP"
+      }
     }
-    frame_options {
-      frame_option = "DENY"
-      override     = true
-    }
-    referrer_policy {
-      referrer_policy = "no-referrer"
-      override        = true
-    }
-    # "connect-src 'none'" is the promise that logs never leave the browser, enforced by the browser itself.
-    # Inline styles are allowed because the chart library positions its elements with them.
-    content_security_policy {
-      content_security_policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
-      override                = true
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "${var.project}-rate-limit"
+      sampled_requests_enabled   = true
     }
   }
 
-  custom_headers_config {
-    items {
-      header   = "Permissions-Policy"
-      value    = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-      override = true
-    }
-    items {
-      header   = "Cross-Origin-Opener-Policy"
-      value    = "same-origin"
-      override = true
-    }
+  visibility_config {
+    cloudwatch_metrics_enabled = true
+    metric_name                = "${var.project}-site"
+    sampled_requests_enabled   = true
   }
 }
 
@@ -167,6 +171,7 @@ resource "aws_cloudfront_distribution" "site" {
   http_version        = "http2and3"
   is_ipv6_enabled     = true
   aliases             = local.custom_domain ? [var.domain_name] : []
+  web_acl_id          = aws_wafv2_web_acl.site.arn
 
   origin {
     origin_id                = "s3-site"
@@ -181,7 +186,7 @@ resource "aws_cloudfront_distribution" "site" {
     cached_methods             = ["GET", "HEAD"]
     compress                   = true
     cache_policy_id            = data.aws_cloudfront_cache_policy.optimized.id
-    response_headers_policy_id = aws_cloudfront_response_headers_policy.security.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security.id
   }
 
   restrictions {

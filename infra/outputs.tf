@@ -30,6 +30,11 @@ output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.site.id
 }
 
+# Paste into the README's "Cap the bill" command to put the distribution on the free flat-rate plan.
+output "flat_rate_plan_resources" {
+  value = "${aws_cloudfront_distribution.site.arn} ${aws_wafv2_web_acl.site.arn}"
+}
+
 output "deploy_role_arn" {
   value = aws_iam_role.deploy.arn
 }

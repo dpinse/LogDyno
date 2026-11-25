@@ -13,6 +13,9 @@ test('add a vehicle, load a log, see the result', async ({ page }) => {
 	await expect(page.getByText(/@ [\d,]+ rpm/).first()).toBeVisible();
 	await expect(page.locator('.u-wrap canvas').first()).toBeVisible();
 
+	// The built page forbids all network requests, so a log cannot be sent anywhere.
+	expect(await page.evaluate(() => fetch('/favicon.svg').then(() => 'allowed', () => 'blocked'))).toBe('blocked');
+
 	// Pointing at a run card dims the other runs without rebuilding the chart.
 	await page.getByLabel('Run name').hover();
 
