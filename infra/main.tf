@@ -204,6 +204,18 @@ resource "aws_cloudfront_distribution" "site" {
   }
 }
 
+# ---------- Billing plan ----------
+
+# CloudFront's free flat-rate plan: no overage charges, so a flood of requests cannot run up a bill.
+# It needs the web ACL above and only AWS-managed header policies. An account allows three free plans,
+# and accounts on the AWS Free Tier are not eligible; delete this resource to stay on pay-as-you-go.
+resource "aws_pricingplanmanager_subscription" "site" {
+  provider      = aws.us_east_1
+  plan_family   = "CloudFront"
+  plan_tier     = "FREE"
+  resource_arns = [aws_cloudfront_distribution.site.arn, aws_wafv2_web_acl.site.arn]
+}
+
 # ---------- Keyless deploys from GitHub Actions ----------
 
 resource "aws_iam_openid_connect_provider" "github" {

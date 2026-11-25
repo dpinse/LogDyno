@@ -34,7 +34,7 @@ variable "domain_name" {
 }
 
 variable "price_class" {
-  description = "CloudFront edge locations: PriceClass_100 (NA/EU, cheapest), _200, or _All."
+  description = "CloudFront edge locations. The flat-rate plan sets PriceClass_All and has no per-GB price, so leave this unless you drop the plan."
   type        = string
-  default     = "PriceClass_100"
+  default     = "PriceClass_All"
 }
