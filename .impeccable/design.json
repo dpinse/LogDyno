@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T02:44:35Z",
+  "title": "Design System: LogDyno",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "canonical": "light-dark(#fafafa, #0a0a0b)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Card",
+        "canonical": "light-dark(#ffffff, #131316)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "light-dark(#e4e4e7, #27272a)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Text",
+        "canonical": "light-dark(#71717a, #a1a1aa)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "light-dark(#0a0a0a, #fafafa)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "light-dark(#2f6bff, #5b8cff)",
+        "tonalRamp": [
+          "oklch(15% 0.084 264)",
+          "oklch(27% 0.147 264)",
+          "oklch(39% 0.189 264)",
+          "oklch(51% 0.210 264)",
+          "oklch(63% 0.210 264)",
+          "oklch(75% 0.168 264)",
+          "oklch(87% 0.095 264)",
+          "oklch(95% 0.042 264)"
+        ]
+      },
+      "on-accent": {
+        "role": "primary",
+        "displayName": "On Accent",
+        "canonical": "light-dark(#ffffff, #0a0a0b)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "danger": {
+        "role": "secondary",
+        "displayName": "Fault Red",
+        "canonical": "light-dark(#c62828, #ff9592)",
+        "tonalRamp": [
+          "oklch(15% 0.076 27)",
+          "oklch(27% 0.133 27)",
+          "oklch(39% 0.171 27)",
+          "oklch(51% 0.190 27)",
+          "oklch(63% 0.190 27)",
+          "oklch(75% 0.152 27)",
+          "oklch(87% 0.086 27)",
+          "oklch(95% 0.038 27)"
+        ]
+      },
+      "chart-grid": {
+        "role": "neutral",
+        "displayName": "Chart Grid",
+        "canonical": "light-dark(#EDEDF0, #1F1F23)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "run-2": {
+        "role": "tertiary",
+        "displayName": "Run 2 Red",
+        "canonical": "light-dark(#E5484D, #FF6369)",
+        "tonalRamp": [
+          "oklch(15% 0.076 22)",
+          "oklch(27% 0.133 22)",
+          "oklch(39% 0.171 22)",
+          "oklch(51% 0.190 22)",
+          "oklch(63% 0.190 22)",
+          "oklch(75% 0.152 22)",
+          "oklch(87% 0.086 22)",
+          "oklch(95% 0.038 22)"
+        ]
+      },
+      "run-3": {
+        "role": "tertiary",
+        "displayName": "Run 3 Teal",
+        "canonical": "light-dark(#12A594, #0AC5B3)",
+        "tonalRamp": [
+          "oklch(15% 0.044 180)",
+          "oklch(27% 0.077 180)",
+          "oklch(39% 0.099 180)",
+          "oklch(51% 0.110 180)",
+          "oklch(63% 0.110 180)",
+          "oklch(75% 0.088 180)",
+          "oklch(87% 0.050 180)",
+          "oklch(95% 0.022 180)"
+        ]
+      },
+      "run-4": {
+        "role": "tertiary",
+        "displayName": "Run 4 Amber",
+        "canonical": "light-dark(#C2570C, #F5A524)",
+        "tonalRamp": [
+          "oklch(15% 0.060 55)",
+          "oklch(27% 0.105 55)",
+          "oklch(39% 0.135 55)",
+          "oklch(51% 0.150 55)",
+          "oklch(63% 0.150 55)",
+          "oklch(75% 0.120 55)",
+          "oklch(87% 0.068 55)",
+          "oklch(95% 0.030 55)"
+        ]
+      },
+      "run-5": {
+        "role": "tertiary",
+        "displayName": "Run 5 Violet",
+        "canonical": "light-dark(#8E4EC6, #BF7AF0)",
+        "tonalRamp": [
+          "oklch(15% 0.068 305)",
+          "oklch(27% 0.119 305)",
+          "oklch(39% 0.153 305)",
+          "oklch(51% 0.170 305)",
+          "oklch(63% 0.170 305)",
+          "oklch(75% 0.136 305)",
+          "oklch(87% 0.077 305)",
+          "oklch(95% 0.034 305)"
+        ]
+      },
+      "run-6": {
+        "role": "tertiary",
+        "displayName": "Run 6 Cyan",
+        "canonical": "light-dark(#0E7490, #22B8CF)",
+        "tonalRamp": [
+          "oklch(15% 0.044 215)",
+          "oklch(27% 0.077 215)",
+          "oklch(39% 0.099 215)",
+          "oklch(51% 0.110 215)",
+          "oklch(63% 0.110 215)",
+          "oklch(75% 0.088 215)",
+          "oklch(87% 0.050 215)",
+          "oklch(95% 0.022 215)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The empty-state heading only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "App name in the top bar; the dialog title at -0.02em."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Chart section headings."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Peak power and torque at the top of a run card."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text; buttons at weight 500."
+      },
+      "body-lg": {
+        "displayName": "Body large",
+        "purpose": "Empty-state prose inside the drop zone."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Field values, legend keys, chart readout, heading notes, hints, errors."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels and units; chart axis text and peak figures on the canvas."
+      }
+    },
+    "shadows": [
+      {
+        "name": "modal",
+        "value": "0 16px 48px -12px rgb(0 0 0 / 0.3)",
+        "purpose": "The modal dialog only, over a rgb(0 0 0 / 0.4) backdrop."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Border-colour and background-colour transitions on buttons and fields. The only motion in the system."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "900px"
+      },
+      {
+        "name": "dialog-stack",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default action: card fill, hairline border. Every action except the one primary.",
+      "html": "<button class=\"ds-btn\">Vehicles</button>",
+      "css": ".ds-btn { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 12px; font-weight: 500; white-space: nowrap; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-btn:hover { border-color: var(--muted); } .ds-btn:active { background: var(--bg); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one accent-filled action in a view (Load logs).",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Load logs</button>",
+      "css": ".ds-btn { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 12px; font-weight: 500; white-space: nowrap; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-btn:hover { border-color: var(--muted); } .ds-btn:active { background: var(--bg); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-btn-primary { color: var(--on-accent); background: var(--accent); border-color: var(--accent); } .ds-btn-primary:hover { border-color: var(--accent); filter: brightness(1.08); } .ds-btn-primary:active { background: var(--accent); }"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Destructive action: the default button with danger-coloured text.",
+      "html": "<button class=\"ds-btn ds-btn-danger\">Delete vehicle</button>",
+      "css": ".ds-btn { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 12px; font-weight: 500; white-space: nowrap; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-btn:hover { border-color: var(--muted); } .ds-btn:active { background: var(--bg); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-btn-danger { color: var(--danger); }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "24px borderless button for a single inline SVG icon, such as removing a run.",
+      "html": "<button class=\"ds-icon\" aria-label=\"Remove run\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2 2l8 8M10 2l-8 8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></button>",
+      "css": ".ds-icon { display: grid; place-items: center; width: 24px; height: 24px; padding: 0; color: var(--muted); background: none; border: 0; border-radius: 4px; cursor: pointer; } .ds-icon:hover { color: var(--ink); background: var(--bg); } .ds-icon:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Labelled Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "28px control under an 11px muted label, with the unit right-aligned on the label row.",
+      "html": "<label class=\"ds-f\" style=\"width:160px\"><span>Air temperature <small>°F</small></span><input type=\"number\" value=\"77\"></label>",
+      "css": ".ds-f { display: flex; flex-direction: column; gap: 2px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 11px; line-height: 14px; color: var(--muted); } .ds-f > span { display: flex; justify-content: space-between; } .ds-f input, .ds-f select { width: 100%; height: 28px; padding: 0 8px; font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: border-color 150ms; } .ds-f input:hover, .ds-f select:hover { border-color: var(--muted); } .ds-f input:focus-visible, .ds-f select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-f small { font-size: inherit; }"
+    },
+    {
+      "name": "Select Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Native select sharing the text field shape.",
+      "html": "<label class=\"ds-f\" style=\"width:160px\"><span>Gear</span><select><option>3rd · 1.4</option><option>4th · 1</option></select></label>",
+      "css": ".ds-f { display: flex; flex-direction: column; gap: 2px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 11px; line-height: 14px; color: var(--muted); } .ds-f > span { display: flex; justify-content: space-between; } .ds-f input, .ds-f select { width: 100%; height: 28px; padding: 0 8px; font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: border-color 150ms; } .ds-f input:hover, .ds-f select:hover { border-color: var(--muted); } .ds-f input:focus-visible, .ds-f select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "List Item",
+      "kind": "nav",
+      "refersTo": "list-item",
+      "description": "Row in the dialog list of saved vehicles; the current row takes the ground fill and weight 600.",
+      "html": "<nav class=\"ds-list\"><button class=\"ds-item\" aria-current=\"true\">Mk7 GTI</button><button class=\"ds-item\">Track car</button></nav>",
+      "css": ".ds-list { display: flex; flex-direction: column; gap: 4px; width: 176px; } .ds-item { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 10px; color: var(--ink); border: 0; border-radius: 6px; background: none; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; } .ds-item:hover, .ds-item[aria-current='true'] { background: var(--bg); } .ds-item[aria-current='true'] { font-weight: 600; } .ds-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }"
+    },
+    {
+      "name": "Run Swatch",
+      "kind": "custom",
+      "description": "A 2px line with the run marker on it: circle, square, triangle, diamond. Run 1 is ink.",
+      "html": "<span class=\"ds-keys\"><span class=\"ds-key\"><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"var(--ink)\" stroke-width=\"2\"/><circle r=\"4\" fill=\"var(--ink)\"/></svg>Stock tune</span><span class=\"ds-key\"><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"light-dark(#E5484D, #FF6369)\" stroke-width=\"2\"/><polygon points=\"-3.4,-3.4 3.4,-3.4 3.4,3.4 -3.4,3.4\" fill=\"light-dark(#E5484D, #FF6369)\"/></svg>Stage 1 map</span><span class=\"ds-key\"><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"light-dark(#12A594, #0AC5B3)\" stroke-width=\"2\"/><polygon points=\"0,-4.8 4.6,3.4 -4.6,3.4\" fill=\"light-dark(#12A594, #0AC5B3)\"/></svg>Stage 1 + intake</span><span class=\"ds-key ds-quiet\"><svg width=\"20\" height=\"12\" aria-hidden=\"true\"><line y1=\"6\" y2=\"6\" x2=\"20\" stroke=\"currentColor\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/></svg>Torque</span></span>",
+      "css": ".ds-keys { display: flex; flex-wrap: wrap; gap: 4px 16px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--ink); } .ds-key { display: flex; align-items: center; gap: 6px; font-size: 12px; } .ds-quiet { color: var(--muted); }"
+    },
+    {
+      "name": "Run Card",
+      "kind": "card",
+      "refersTo": "run-card",
+      "description": "One run: swatch and name, peak figures first, then its settings. Border turns accent while focus is inside.",
+      "html": "<article class=\"ds-run\"><header><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"var(--ink)\" stroke-width=\"2\"/><circle r=\"4\" fill=\"var(--ink)\"/></svg><b>Stock tune</b></header><div class=\"ds-peaks\"><div><b>276</b> hp<span>@ 5,704 rpm</span></div><div><b>287</b> lb-ft<span>@ 4,021 rpm</span></div></div><div class=\"ds-peaks\"><label class=\"ds-f\"><span>Vehicle</span><select><option>Mk7 GTI</option></select></label><label class=\"ds-f\"><span>Gear</span><select><option>3rd · 1.4</option></select></label></div></article>",
+      "css": ".ds-f { display: flex; flex-direction: column; gap: 2px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 11px; line-height: 14px; color: var(--muted); } .ds-f > span { display: flex; justify-content: space-between; } .ds-f input, .ds-f select { width: 100%; height: 28px; padding: 0 8px; font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: border-color 150ms; } .ds-f input:hover, .ds-f select:hover { border-color: var(--muted); } .ds-f input:focus-visible, .ds-f select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-run { display: flex; flex-direction: column; gap: 12px; width: 336px; padding: 12px 14px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; } .ds-run:focus-within { border-color: var(--accent); } .ds-run header { display: flex; align-items: center; gap: 8px; } .ds-run header b { font-weight: 600; letter-spacing: -0.01em; } .ds-peaks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; } .ds-peaks b { font-size: 20px; font-weight: 500; line-height: 24px; letter-spacing: -0.02em; } .ds-peaks div > span { display: block; font-size: 12px; line-height: 16px; color: var(--muted); }"
+    },
+    {
+      "name": "Readout Row",
+      "kind": "custom",
+      "description": "Chart readout at one RPM: swatch, run name and values in ink, with the difference from the first run in muted text.",
+      "html": "<p class=\"ds-readout\"><b>4,925 rpm</b><span class=\"ds-row\"><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"var(--ink)\" stroke-width=\"2\"/><circle r=\"4\" fill=\"var(--ink)\"/></svg>Stock tune <span>260 hp</span><span>277 lb-ft</span></span><span class=\"ds-row\"><svg width=\"24\" height=\"12\" viewBox=\"-12 -6 24 12\" aria-hidden=\"true\"><line x1=\"-12\" x2=\"12\" stroke=\"light-dark(#E5484D, #FF6369)\" stroke-width=\"2\"/><polygon points=\"-3.4,-3.4 3.4,-3.4 3.4,3.4 -3.4,3.4\" fill=\"light-dark(#E5484D, #FF6369)\"/></svg>Stage 1 map <span>352 hp <small>+92</small></span><span>375 lb-ft <small>+98</small></span></span></p>",
+      "css": ".ds-readout { display: flex; flex-wrap: wrap; gap: 2px 20px; margin: 0; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 12px; color: var(--muted); } .ds-readout b { font-weight: 600; color: var(--ink); } .ds-row { display: flex; align-items: center; gap: 6px; font-weight: 500; color: var(--ink); } .ds-row span { font-weight: 400; } .ds-row small { font-size: inherit; color: var(--muted); }"
+    },
+    {
+      "name": "Drop Zone",
+      "kind": "card",
+      "refersTo": "drop-zone",
+      "description": "The empty state: a dashed-bordered panel that is the file drop target, with the next step as its one primary action.",
+      "html": "<div class=\"ds-zone\"><h2>Estimate wheel power from a data log</h2><p>Drop logs here or anywhere on this page. Your logs stay in this browser.</p><div class=\"ds-actions\"><button class=\"ds-btn ds-btn-primary\">Add a vehicle</button><button class=\"ds-btn\">Load logs</button><button class=\"ds-btn\">Try an example</button></div></div>",
+      "css": ".ds-btn { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 12px; font-weight: 500; white-space: nowrap; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-btn:hover { border-color: var(--muted); } .ds-btn:active { background: var(--bg); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-btn-primary { color: var(--on-accent); background: var(--accent); border-color: var(--accent); } .ds-btn-primary:hover { border-color: var(--accent); filter: brightness(1.08); } .ds-btn-primary:active { background: var(--accent); } .ds-zone { max-width: 720px; padding: 40px 48px; border: 1px dashed var(--muted); border-radius: 12px; font: 400 14px/22px 'Geist Variable', system-ui, sans-serif; color: var(--muted); } .ds-zone h2 { margin: 0; font-size: 22px; font-weight: 600; line-height: 28px; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; } .ds-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Neutral Scale",
+    "overview": "The interface is a measuring instrument that stays out of its own readings. Ground, cards, borders and text are all achromatic, so the only saturated colour on a working screen is the runs themselves. Controls are small, dense and always visible: every setting behind a curve sits in that run's card beside its peak figures, never behind a menu.\n\nTwo themes exist and are the same design at opposite ends of the lightness scale: near-white ground with white cards, or near-black ground with slightly lifted cards. Every colour token is a single `light-dark()` pair on the root. The app follows the system by default; the Theme select in the top bar writes `data-theme` on the root element, which pins `color-scheme` to one side.\n\nDepth is carried by hairline borders and a one-step tonal lift, not shadows. Type is one family at three weights in sentence case, with tabular numerals everywhere because most of what is on screen is a number.",
+    "keyCharacteristics": [
+      "Achromatic chrome; run data is the only saturated colour.",
+      "Light and dark themes from one set of `light-dark()` tokens, system-following with a manual override.",
+      "Hairline borders and tonal layering; a single shadow, on the modal dialog.",
+      "Dense controls: 28px fields, 32px buttons, 11px labels, 13px body.",
+      "Runs identified by colour and marker shape together; torque is dashed against solid power.",
+      "Run colour is for lines, markers and swatches; text about a run is always Ink.",
+      "One typeface (Geist Variable, self-hosted) at weights 400, 500 and 600."
+    ],
+    "rules": [
+      {
+        "name": "The Runs Own The Colour Rule",
+        "body": "Chrome is achromatic. Hue on screen means a run, the one primary action, a focus or selection state, or an error.",
+        "section": "colors"
+      },
+      {
+        "name": "The First Run Is Ink Rule",
+        "body": "The first run is drawn in Ink, so a single run, on screen and in the exported image, is fully monochrome. Colour appears only when there is something to compare.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never Colour Alone Rule",
+        "body": "A run is always identified by colour and marker shape together, wherever it appears: card header swatch, legend, readout, line end, peak. Where one chart carries two quantities for a run, the right-axis one (torque) is dashed 5/4 and the left-axis one (power) is solid.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Text Rule",
+        "body": "Run colour is for lines, markers and swatches. Text about a run (peak figures on the canvas, values in the readout, names in the legend and the exported image) is Ink, and is tied to its run by the swatch beside it or the marker it sits on.",
+        "section": "colors"
+      },
+      {
+        "name": "The Canvas Mirror Rule",
+        "body": "The chart canvas cannot read CSS custom properties. Chart.svelte holds literal light and dark copies of `ink`, `muted` and `bg`, plus the canvas-only grid colour, and receives a `dark` flag. A change to those tokens in app.css must be made in Chart.svelte as well.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "`font-variant-numeric: tabular-nums` is set on the body, so every number aligns and no figure shifts width as values change.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "All headings, labels and buttons are sentence case at normal tracking. No uppercase, no letter-spaced labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "Only a modal that floats above the whole screen casts a shadow. Cards, bars, buttons and fields are flat in every state.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do define every colour as one `light-dark()` pair on the root and let `data-theme` switch `color-scheme`; a new colour needs both values.",
+      "Do update the literal copies in Chart.svelte whenever `ink`, `muted` or `bg` changes in app.css.",
+      "Do give every run a colour and a marker shape together, and keep the first run in Ink.",
+      "Do set every figure and name about a run in Ink, beside its swatch or on its marker.",
+      "Do give each quantity its own single-axis chart; where power and torque share one, draw torque dashed 5/4 and key that in Quiet Text.",
+      "Do keep a run's inputs visible in its card, with the peak figures first.",
+      "Do separate layers with a 1px Hairline border and the Ground/Card tonal step.",
+      "Do use weights 400, 500 and 600 only, sentence case, with tabular numerals.",
+      "Do keep controls dense: 28px fields, 32px buttons, 11px labels above the control."
+    ],
+    "donts": [
+      "Don't use Signal Blue for anything except the primary action, focus, selection, the caret and the drop outline; in particular, never as a run colour.",
+      "Don't put a second primary button in the same group of actions.",
+      "Don't colour text with a run colour, on the canvas or off it.",
+      "Don't tint chrome. Backgrounds, cards and borders stay on the neutral scale in both themes.",
+      "Don't add shadows to cards, bars, buttons or fields; only a modal casts one.",
+      "Don't rely on colour alone to tell runs apart, on screen or in the exported image.",
+      "Don't use Fault Red as a fill.",
+      "Don't set type in uppercase or add tracking to labels.",
+      "Don't load fonts from a remote host; nothing leaves the browser."
+    ]
+  }
+}

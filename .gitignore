@@ -1,0 +1,25 @@
+node_modules
+/dist
+
+# Vendor installer used only as a reference; not ours to redistribute.
+setup.exe
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Vite
+vite.config.ts.timestamp-*
+
+# Playwright
+/test-results
+/playwright-report
+
+# Impeccable working material (keep design.json and surfaces/)
+/.impeccable/*
+!/.impeccable/design.json
+!/.impeccable/surfaces/
