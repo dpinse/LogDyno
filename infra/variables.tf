@@ -11,7 +11,7 @@ variable "region" {
 }
 
 variable "github_repo" {
-  description = "Repository as it appears in GitHub's OIDC subject: owner@ownerId/name@repoId, e.g. dpinse@17935575/VirtualDyno@<repo id> (check CloudTrail AssumeRoleWithWebIdentity if unsure). Changes if the repository is renamed."
+  description = "Repository as it appears in GitHub's OIDC subject: owner@ownerId/name@repoId, e.g. dpinse@17935575/LogDyno@<repo id> (check CloudTrail AssumeRoleWithWebIdentity if unsure). Changes if the repository is renamed."
   type        = string
 }
 
