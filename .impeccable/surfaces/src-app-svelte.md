@@ -25,4 +25,12 @@ FIRST VIEWPORT: 56px top bar (name left; unit selects, theme, Vehicles, Export P
 
 FORM: Monochrome Product (dealt challenger, user's choice). seed:6b3da85e7f7e1616. Signature interaction: hover readout across all runs at one RPM; drag to zoom.
 
+USER PINS (after the first build, in the user's words; these override the blocks above where they differ):
+- "Make sure to add a dark mode as well"
+- "I liked the top bar of the model pick. Particularly the red line logo": the top bar is a fixed dark ink surface with a red slanted mark and a bold capital wordmark, in both themes; its primary button is white.
+- "Make the light and dark mode a toggle switch": a Dark switch replaces the theme select.
+- "can we add tire calculation like virtual dyno": the tire-size calculator is always visible in the vehicle editor.
+- "Add the logs survive reload. and all the design and polish": runs and logs persist; pointing at a run dims the others; a values table sits under the main chart.
+- "Might be good to have a scaling setting like dynojet vs mustang dyno": a Dyno scale select in the top bar; the scale in use is shown on the chart and the export, marked approximate.
+
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

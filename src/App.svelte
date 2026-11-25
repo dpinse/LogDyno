@@ -218,10 +218,18 @@
 		ctx.fillStyle = style.backgroundColor;
 		ctx.fillRect(0, 0, out.width, out.height);
 		ctx.textBaseline = 'middle';
-		text(600);
+		// The same mark and wordmark as the top bar: this image is what other people see.
+		ctx.fillStyle = '#e4421b';
+		ctx.beginPath();
+		ctx.moveTo(20 * px, 11 * px);
+		ctx.lineTo(29 * px, 11 * px);
+		ctx.lineTo(25 * px, 29 * px);
+		ctx.lineTo(16 * px, 29 * px);
+		ctx.fill();
+		text(700, 16);
 		ctx.fillStyle = style.color;
-		ctx.fillText('LogDyno', 16 * px, 20 * px);
-		const afterName = 24 * px + ctx.measureText('LogDyno').width;
+		ctx.fillText('LOGDYNO', 36 * px, 21 * px);
+		const afterName = 46 * px + ctx.measureText('LOGDYNO').width;
 		text(400);
 		ctx.fillStyle = muted;
 		ctx.fillText(`Wheel power and torque, estimated from data logs${scaleNote ? ` · ${scaleNote}` : ''}`, afterName, 20 * px);
@@ -293,10 +301,12 @@
 		<select aria-label="Torque unit" bind:value={saved.settings.torque}>
 			{#each Object.entries(TORQUE) as [key, u]}<option value={key}>{u.label}</option>{/each}
 		</select>
-		<select aria-label="Dyno scale" bind:value={saved.settings.dyno}>
+		<span class="scale">
+			<select aria-label="Dyno scale" bind:value={saved.settings.dyno}>
 			{#each Object.entries(DYNOS) as [key, d]}<option value={key}>{d.label}</option>{/each}
 		</select>
 		{#if saved.settings.dyno === 'custom'}
+			<span aria-hidden="true">×</span>
 			<input
 				class="factor"
 				type="number"
@@ -304,21 +314,22 @@
 				min="0.5"
 				max="1.5"
 				aria-label="Custom scale factor"
-				value={saved.settings.customScale}
+				value={saved.settings.customScale.toFixed(2)}
 				onchange={(e) => {
 					const x = e.currentTarget.valueAsNumber;
 					if (x >= 0.5 && x <= 1.5) saved.settings.customScale = x;
-					else e.currentTarget.value = String(saved.settings.customScale);
+					else e.currentTarget.value = saved.settings.customScale.toFixed(2);
 				}}
 			/>
 		{/if}
-		<!-- A choice that differs from the system is kept; switching back to match it follows the system again. -->
-		<button class="switch" role="switch" aria-checked={dark} onclick={() => (saved.settings.theme = !dark === prefersDark ? 'system' : dark ? 'light' : 'dark')}>
-			<span class="track" aria-hidden="true"></span>
-			Dark
-		</button>
+		</span>
 	</div>
-	<div class="group">
+	<!-- A choice that differs from the system is kept; switching back to match it follows the system again. -->
+	<button class="switch" role="switch" aria-checked={dark} onclick={() => (saved.settings.theme = !dark === prefersDark ? 'system' : dark ? 'light' : 'dark')}>
+		<span class="track" aria-hidden="true"></span>
+		Dark
+	</button>
+	<div class="group tools">
 		<button class="btn" onclick={() => (vehiclesOpen = true)}>Vehicles</button>
 		<button class="btn" disabled={!shown.length} onclick={exportPng}>Export PNG</button>
 		<button class="btn" onclick={() => download(new Blob([JSON.stringify(saved, null, 2)], { type: 'application/json' }), 'logdyno-backup.json')}>Backup</button>
@@ -562,9 +573,16 @@
 		display: flex;
 		gap: 8px;
 	}
-	.group + .group {
+	.tools {
 		padding-left: 16px;
 		border-left: 1px solid var(--border);
+	}
+	/* The dyno scale and its custom factor stay together as one control. */
+	.scale {
+		display: flex;
+		flex: none;
+		align-items: center;
+		gap: 6px;
 	}
 	.problems {
 		display: flex;
@@ -633,6 +651,7 @@
 	.values {
 		margin: 4px 0 0 48px;
 		font-size: 12px;
+		overflow-x: auto; /* several runs make the table wider than a phone */
 	}
 	.values summary {
 		color: var(--muted);
@@ -719,14 +738,20 @@
 			grid-template-columns: 1fr auto;
 			padding: 12px;
 		}
-		.bar .primary {
+		.bar {
+			grid-template-columns: 1fr auto auto;
+		}
+		.switch {
 			grid-area: 1 / 2;
+		}
+		.bar .primary {
+			grid-area: 1 / 3;
 		}
 		.group {
 			grid-column: 1 / -1;
 			flex-wrap: wrap;
 		}
-		.group + .group {
+		.tools {
 			padding-left: 0;
 			border-left: 0;
 		}
@@ -739,9 +764,15 @@
 		.group > select {
 			flex: 1 0 auto; /* grow to fill the row, never shrink below the text, wrap instead */
 		}
-		.group > .switch,
-		.group > .factor {
-			flex: none;
+		.group > .scale {
+			flex: 1 0 auto;
+			padding-inline: 0;
+		}
+		.scale > select {
+			flex: 1;
+		}
+		.values {
+			margin-left: 0;
 		}
 		.zone {
 			margin-top: 0;

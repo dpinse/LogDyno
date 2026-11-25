@@ -22,11 +22,12 @@ export interface Run {
 /** [light theme, dark theme]. The first run is ink so a single run stays monochrome. */
 export const COLORS: [string, string][] = [
 	['#0A0A0A', '#FAFAFA'],
-	['#E5484D', '#FF6369'],
 	['#12A594', '#0AC5B3'],
-	['#C2570C', '#F5A524'],
 	['#8E4EC6', '#BF7AF0'],
-	['#0E7490', '#22B8CF']
+	['#C2570C', '#F5A524'],
+	['#0E7490', '#22B8CF'],
+	// Red comes last: it sits too close to the red mark in the top bar to be an early run colour.
+	['#E5484D', '#FF6369']
 ];
 export const runColor = (index: number, dark: boolean) => COLORS[index % COLORS.length][dark ? 1 : 0];
 

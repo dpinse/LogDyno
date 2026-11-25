@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-25T02:44:35Z",
+  "generatedAt": "2026-11-25T03:10:37Z",
   "title": "Design System: LogDyno",
   "extensions": {
     "colorMeta": {
@@ -139,9 +139,99 @@
           "oklch(95% 0.002 286)"
         ]
       },
+      "bar-ink": {
+        "role": "neutral",
+        "displayName": "Bar Ink",
+        "canonical": "#10151c",
+        "tonalRamp": [
+          "oklch(15% 0.008 255)",
+          "oklch(27% 0.014 255)",
+          "oklch(39% 0.018 255)",
+          "oklch(51% 0.020 255)",
+          "oklch(63% 0.020 255)",
+          "oklch(75% 0.016 255)",
+          "oklch(87% 0.009 255)",
+          "oklch(95% 0.004 255)"
+        ]
+      },
+      "bar-surface": {
+        "role": "neutral",
+        "displayName": "Bar Surface",
+        "canonical": "#1b222c",
+        "tonalRamp": [
+          "oklch(15% 0.008 255)",
+          "oklch(27% 0.014 255)",
+          "oklch(39% 0.018 255)",
+          "oklch(51% 0.020 255)",
+          "oklch(63% 0.020 255)",
+          "oklch(75% 0.016 255)",
+          "oklch(87% 0.009 255)",
+          "oklch(95% 0.004 255)"
+        ]
+      },
+      "bar-border": {
+        "role": "neutral",
+        "displayName": "Bar Hairline",
+        "canonical": "rgb(255 255 255 / 0.28)",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "bar-muted": {
+        "role": "neutral",
+        "displayName": "Bar Quiet",
+        "canonical": "#aebbc5",
+        "tonalRamp": [
+          "oklch(15% 0.008 235)",
+          "oklch(27% 0.014 235)",
+          "oklch(39% 0.018 235)",
+          "oklch(51% 0.020 235)",
+          "oklch(63% 0.020 235)",
+          "oklch(75% 0.016 235)",
+          "oklch(87% 0.009 235)",
+          "oklch(95% 0.004 235)"
+        ]
+      },
+      "bar-text": {
+        "role": "neutral",
+        "displayName": "Bar Text",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(27% 0.008 286)",
+          "oklch(39% 0.011 286)",
+          "oklch(51% 0.012 286)",
+          "oklch(63% 0.012 286)",
+          "oklch(75% 0.010 286)",
+          "oklch(87% 0.005 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "mark-red": {
+        "role": "tertiary",
+        "displayName": "Mark Red",
+        "canonical": "#e4421b",
+        "tonalRamp": [
+          "oklch(15% 0.080 35)",
+          "oklch(27% 0.140 35)",
+          "oklch(39% 0.180 35)",
+          "oklch(51% 0.200 35)",
+          "oklch(63% 0.200 35)",
+          "oklch(75% 0.160 35)",
+          "oklch(87% 0.090 35)",
+          "oklch(95% 0.040 35)"
+        ]
+      },
       "run-2": {
         "role": "tertiary",
-        "displayName": "Run 2 Red",
+        "displayName": "Run 6 Red",
         "canonical": "light-dark(#E5484D, #FF6369)",
         "tonalRamp": [
           "oklch(15% 0.076 22)",
@@ -156,7 +246,7 @@
       },
       "run-3": {
         "role": "tertiary",
-        "displayName": "Run 3 Teal",
+        "displayName": "Run 2 Teal",
         "canonical": "light-dark(#12A594, #0AC5B3)",
         "tonalRamp": [
           "oklch(15% 0.044 180)",
@@ -186,7 +276,7 @@
       },
       "run-5": {
         "role": "tertiary",
-        "displayName": "Run 5 Violet",
+        "displayName": "Run 3 Violet",
         "canonical": "light-dark(#8E4EC6, #BF7AF0)",
         "tonalRamp": [
           "oklch(15% 0.068 305)",
@@ -201,7 +291,7 @@
       },
       "run-6": {
         "role": "tertiary",
-        "displayName": "Run 6 Cyan",
+        "displayName": "Run 5 Cyan",
         "canonical": "light-dark(#0E7490, #22B8CF)",
         "tonalRamp": [
           "oklch(15% 0.044 215)",
@@ -220,9 +310,13 @@
         "displayName": "Display",
         "purpose": "The empty-state heading only."
       },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The app name in the top bar, in capitals. Used once."
+      },
       "headline": {
         "displayName": "Headline",
-        "purpose": "App name in the top bar; the dialog title at -0.02em."
+        "purpose": "The dialog title."
       },
       "title": {
         "displayName": "Title",
@@ -234,7 +328,7 @@
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Default text; buttons at weight 500."
+        "purpose": "Default text; buttons and the switch label at weight 500."
       },
       "body-lg": {
         "displayName": "Body large",
@@ -242,7 +336,7 @@
       },
       "small": {
         "displayName": "Small",
-        "purpose": "Field values, legend keys, chart readout, heading notes, hints, errors."
+        "purpose": "Field values, legend keys, chart readout, values table, heading notes, hints, group legends, errors."
       },
       "label": {
         "displayName": "Label",
@@ -260,7 +354,17 @@
       {
         "name": "state",
         "value": "150ms",
-        "purpose": "Border-colour and background-colour transitions on buttons and fields. The only motion in the system."
+        "purpose": "Border-colour and background-colour transitions on buttons and fields. Every hover and press response."
+      },
+      {
+        "name": "switch-knob",
+        "value": "translate 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The switch knob sliding 14px."
+      },
+      {
+        "name": "run-dim",
+        "value": "opacity 0.35",
+        "purpose": "Lines and markers of other runs while one run is pointed at or focused; applied by canvas redraw, not animated."
       }
     ],
     "breakpoints": [
@@ -316,14 +420,6 @@
       "css": ".ds-f { display: flex; flex-direction: column; gap: 2px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 11px; line-height: 14px; color: var(--muted); } .ds-f > span { display: flex; justify-content: space-between; } .ds-f input, .ds-f select { width: 100%; height: 28px; padding: 0 8px; font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: border-color 150ms; } .ds-f input:hover, .ds-f select:hover { border-color: var(--muted); } .ds-f input:focus-visible, .ds-f select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-f small { font-size: inherit; }"
     },
     {
-      "name": "Select Field",
-      "kind": "input",
-      "refersTo": "field",
-      "description": "Native select sharing the text field shape.",
-      "html": "<label class=\"ds-f\" style=\"width:160px\"><span>Gear</span><select><option>3rd · 1.4</option><option>4th · 1</option></select></label>",
-      "css": ".ds-f { display: flex; flex-direction: column; gap: 2px; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 11px; line-height: 14px; color: var(--muted); } .ds-f > span { display: flex; justify-content: space-between; } .ds-f input, .ds-f select { width: 100%; height: 28px; padding: 0 8px; font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: border-color 150ms; } .ds-f input:hover, .ds-f select:hover { border-color: var(--muted); } .ds-f input:focus-visible, .ds-f select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }"
-    },
-    {
       "name": "List Item",
       "kind": "nav",
       "refersTo": "list-item",
@@ -360,24 +456,46 @@
       "description": "The empty state: a dashed-bordered panel that is the file drop target, with the next step as its one primary action.",
       "html": "<div class=\"ds-zone\"><h2>Estimate wheel power from a data log</h2><p>Drop logs here or anywhere on this page. Your logs stay in this browser.</p><div class=\"ds-actions\"><button class=\"ds-btn ds-btn-primary\">Add a vehicle</button><button class=\"ds-btn\">Load logs</button><button class=\"ds-btn\">Try an example</button></div></div>",
       "css": ".ds-btn { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; height: 32px; padding: 0 12px; font-weight: 500; white-space: nowrap; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-btn:hover { border-color: var(--muted); } .ds-btn:active { background: var(--bg); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-btn-primary { color: var(--on-accent); background: var(--accent); border-color: var(--accent); } .ds-btn-primary:hover { border-color: var(--accent); filter: brightness(1.08); } .ds-btn-primary:active { background: var(--accent); } .ds-zone { max-width: 720px; padding: 40px 48px; border: 1px dashed var(--muted); border-radius: 12px; font: 400 14px/22px 'Geist Variable', system-ui, sans-serif; color: var(--muted); } .ds-zone h2 { margin: 0; font-size: 22px; font-weight: 600; line-height: 28px; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; } .ds-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "top-bar",
+      "description": "The one fixed-colour surface: dark ink in both themes, with the red mark, the name in capitals, restyled controls, the Dark switch and the inverse primary.",
+      "html": "<header class=\"ds-bar\"><h1>LogDyno</h1><select aria-label=\"Power unit\"><option>hp</option><option>kW</option></select><button class=\"ds-switch\" role=\"switch\" aria-checked=\"true\"><span class=\"ds-track\" aria-hidden=\"true\"></span>Dark</button><button class=\"ds-bar-btn\">Vehicles</button><button class=\"ds-bar-btn ds-bar-primary\">Load logs</button></header>",
+      "css": ".ds-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 56px; padding: 12px 24px; color-scheme: dark; font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #ffffff; background: #10151c; } .ds-bar h1 { display: flex; align-items: center; gap: 10px; margin: 0 auto 0 0; font-size: 20px; font-weight: 700; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase; } .ds-bar h1::before { content: ''; width: 12px; height: 22px; background: #e4421b; transform: skewX(-12deg); } .ds-bar select, .ds-bar-btn { height: 32px; font: inherit; color: #ffffff; background: #1b222c; border: 1px solid rgb(255 255 255 / 0.28); border-radius: 6px; transition: border-color 150ms, background-color 150ms; } .ds-bar select { padding: 0 8px; } .ds-bar-btn { padding: 0 12px; font-weight: 500; white-space: nowrap; cursor: pointer; } .ds-bar select:hover, .ds-bar-btn:hover { border-color: #aebbc5; } .ds-bar-btn:active { background: #10151c; } .ds-bar-primary { color: #10151c; background: #ffffff; border-color: #ffffff; } .ds-bar-primary:hover { border-color: #ffffff; filter: brightness(1.08); } .ds-bar-primary:active { background: #ffffff; } .ds-switch { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 4px; font: inherit; font-weight: 500; color: inherit; background: none; border: 0; border-radius: 6px; cursor: pointer; } .ds-track { position: relative; width: 32px; height: 18px; background: #1b222c; border: 1px solid rgb(255 255 255 / 0.28); border-radius: 9px; transition: background-color 150ms; } .ds-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: #ffffff; border-radius: 50%; transition: translate 150ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-switch[aria-checked='true'] .ds-track { background: #ffffff; border-color: #ffffff; } .ds-switch[aria-checked='true'] .ds-track::after { translate: 14px; background: #10151c; } .ds-bar :focus-visible { outline: 2px solid #5b8cff; outline-offset: 1px; }"
+    },
+    {
+      "name": "Values Table",
+      "kind": "custom",
+      "refersTo": "values-table",
+      "description": "The chart as text, in a disclosure: right-aligned tabular cells with hairline row rules.",
+      "html": "<details class=\"ds-values\" open><summary>Values as a table</summary><table><thead><tr><th scope=\"col\">RPM</th><th scope=\"col\">Stock tune <small>hp</small></th><th scope=\"col\">Stock tune <small>lb-ft</small></th></tr></thead><tbody><tr><th scope=\"row\">4,000</th><td>219</td><td>287</td></tr><tr><th scope=\"row\">4,250</th><td>232</td><td>286</td></tr><tr><th scope=\"row\">4,500</th><td>243</td><td>284</td></tr></tbody></table></details>",
+      "css": ".ds-values { font: 400 13px/20px 'Geist Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; font-size: 12px; color: var(--ink); } .ds-values summary { color: var(--muted); cursor: pointer; } .ds-values summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; } .ds-values table { margin-top: 8px; border-collapse: collapse; } .ds-values th, .ds-values td { padding: 2px 16px 2px 0; font-weight: 400; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--border); } .ds-values thead th { font-weight: 600; } .ds-values small { font-size: inherit; color: var(--muted); }"
     }
   ],
   "narrative": {
     "northStar": "The Neutral Scale",
-    "overview": "The interface is a measuring instrument that stays out of its own readings. Ground, cards, borders and text are all achromatic, so the only saturated colour on a working screen is the runs themselves. Controls are small, dense and always visible: every setting behind a curve sits in that run's card beside its peak figures, never behind a menu.\n\nTwo themes exist and are the same design at opposite ends of the lightness scale: near-white ground with white cards, or near-black ground with slightly lifted cards. Every colour token is a single `light-dark()` pair on the root. The app follows the system by default; the Theme select in the top bar writes `data-theme` on the root element, which pins `color-scheme` to one side.\n\nDepth is carried by hairline borders and a one-step tonal lift, not shadows. Type is one family at three weights in sentence case, with tabular numerals everywhere because most of what is on screen is a number.",
+    "overview": "The interface is a measuring instrument that stays out of its own readings. Below the top bar, ground, cards, borders and text are all achromatic, so the only saturated colour on the working surface is the runs themselves. Controls are small, dense and always visible: every setting behind a curve sits in that run's card beside its peak figures, never behind a menu.\n\nTwo themes exist and are the same design at opposite ends of the lightness scale: near-white ground with white cards, or near-black ground with slightly lifted cards. Every colour token is a single `light-dark()` pair on the root. The app follows the system by default; the Dark switch in the top bar writes `data-theme` on the root element, which pins `color-scheme` to one side. The top bar is the one surface that does not change: dark ink in both themes, carrying the red mark and the name.\n\nDepth is carried by hairline borders and a one-step tonal lift, not shadows. Type is one family at three weights in sentence case, with tabular numerals everywhere because most of what is on screen is a number.",
     "keyCharacteristics": [
-      "Achromatic chrome; run data is the only saturated colour.",
+      "Achromatic working surface; run data is the only saturated colour on it.",
+      "One fixed dark top bar in both themes, holding the only brand colour (the red mark) and the only capitals (the name).",
       "Light and dark themes from one set of `light-dark()` tokens, system-following with a manual override.",
       "Hairline borders and tonal layering; a single shadow, on the modal dialog.",
       "Dense controls: 28px fields, 32px buttons, 11px labels, 13px body.",
       "Runs identified by colour and marker shape together; torque is dashed against solid power.",
       "Run colour is for lines, markers and swatches; text about a run is always Ink.",
-      "One typeface (Geist Variable, self-hosted) at weights 400, 500 and 600."
+      "One typeface (Geist Variable, self-hosted) at weights 400, 500 and 600, plus 700 for the name alone."
     ],
     "rules": [
       {
         "name": "The Runs Own The Colour Rule",
-        "body": "Chrome is achromatic. Hue on screen means a run, the one primary action, a focus or selection state, or an error.",
+        "body": "Below the top bar, chrome is achromatic. Hue there means a run, the one primary action, a focus or selection state, or an error.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed Bar Rule",
+        "body": "The top bar is the one fixed-colour surface: Bar Ink with Bar Text in both themes, so the mark always sits on the same ground. Mark Red belongs to the mark alone; it is never a state, a run or a fill for anything else.",
         "section": "colors"
       },
       {
@@ -387,12 +505,12 @@
       },
       {
         "name": "The Never Colour Alone Rule",
-        "body": "A run is always identified by colour and marker shape together, wherever it appears: card header swatch, legend, readout, line end, peak. Where one chart carries two quantities for a run, the right-axis one (torque) is dashed 5/4 and the left-axis one (power) is solid.",
+        "body": "A run is always identified by colour and marker shape together, wherever it appears: card header swatch, legend, readout, line end, peak, peak figure. Where one chart carries two quantities for a run, the right-axis one (torque) is dashed 5/4 and the left-axis one (power) is solid.",
         "section": "colors"
       },
       {
         "name": "The Ink Text Rule",
-        "body": "Run colour is for lines, markers and swatches. Text about a run (peak figures on the canvas, values in the readout, names in the legend and the exported image) is Ink, and is tied to its run by the swatch beside it or the marker it sits on.",
+        "body": "Run colour is for lines, markers and swatches. Text about a run (peak figures on the canvas, values in the readout, names in the legend and the exported image) is Ink, and is tied to its run by the swatch or marker beside it.",
         "section": "colors"
       },
       {
@@ -407,7 +525,7 @@
       },
       {
         "name": "The Sentence Case Rule",
-        "body": "All headings, labels and buttons are sentence case at normal tracking. No uppercase, no letter-spaced labels.",
+        "body": "All headings, labels and buttons are sentence case at normal tracking. The only capitals, the only positive tracking and the only weight 700 belong to the name in the top bar.",
         "section": "typography"
       },
       {
@@ -418,24 +536,29 @@
     ],
     "dos": [
       "Do define every colour as one `light-dark()` pair on the root and let `data-theme` switch `color-scheme`; a new colour needs both values.",
+      "Do keep the top bar on its fixed values in both themes, and restyle controls inside it by overriding the neutral tokens on the bar, not by adding variants.",
+      "Do make the top bar's primary action the inverse button (Bar Text fill, Bar Ink text).",
+      "Do give every chart the same left and right gutters so RPM lines up down the page.",
       "Do update the literal copies in Chart.svelte whenever `ink`, `muted` or `bg` changes in app.css.",
       "Do give every run a colour and a marker shape together, and keep the first run in Ink.",
       "Do set every figure and name about a run in Ink, beside its swatch or on its marker.",
       "Do give each quantity its own single-axis chart; where power and torque share one, draw torque dashed 5/4 and key that in Quiet Text.",
       "Do keep a run's inputs visible in its card, with the peak figures first.",
       "Do separate layers with a 1px Hairline border and the Ground/Card tonal step.",
-      "Do use weights 400, 500 and 600 only, sentence case, with tabular numerals.",
+      "Do use weights 400, 500 and 600, sentence case, with tabular numerals; the name in the top bar is the one exception.",
       "Do keep controls dense: 28px fields, 32px buttons, 11px labels above the control."
     ],
     "donts": [
-      "Don't use Signal Blue for anything except the primary action, focus, selection, the caret and the drop outline; in particular, never as a run colour.",
+      "Don't use Signal Blue for anything except the primary action outside the top bar, focus, selection, the caret and the drop outline; in particular, never as a run colour.",
+      "Don't use Mark Red anywhere but the mark and the favicon.",
+      "Don't carry the top bar's fixed colours onto any other surface.",
       "Don't put a second primary button in the same group of actions.",
       "Don't colour text with a run colour, on the canvas or off it.",
-      "Don't tint chrome. Backgrounds, cards and borders stay on the neutral scale in both themes.",
+      "Don't tint chrome below the top bar. Backgrounds, cards and borders there stay on the neutral scale in both themes.",
       "Don't add shadows to cards, bars, buttons or fields; only a modal casts one.",
       "Don't rely on colour alone to tell runs apart, on screen or in the exported image.",
       "Don't use Fault Red as a fill.",
-      "Don't set type in uppercase or add tracking to labels.",
+      "Don't set headings, labels or buttons in uppercase, or add tracking to them.",
       "Don't load fonts from a remote host; nothing leaves the browser."
     ]
   }

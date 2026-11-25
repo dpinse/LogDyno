@@ -67,7 +67,7 @@
 					<legend>Or work it out from the size on the sidewall, e.g. 225/40 R18</legend>
 					<div class="tire">
 						<label class="f"><span>Width <small>mm</small></span><input type="number" bind:value={tire.width} /></label>
-						<label class="f"><span>Aspect ratio <small>%</small></span><input type="number" bind:value={tire.aspect} /></label>
+						<label class="f"><span>Aspect <small>%</small></span><input type="number" bind:value={tire.aspect} /></label>
 						<label class="f"><span>Rim <small>in</small></span><input type="number" bind:value={tire.rim} /></label>
 						<button class="btn" disabled={!(tireSize > 0)} onclick={() => (saved.vehicles[index].tireDiameterM = tireSize)}>
 							Use {tireSize > 0 ? (tireSize * tireUnit.k).toFixed(tireUnit.dp) : '…'} {tireUnit.label}

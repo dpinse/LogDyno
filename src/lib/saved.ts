@@ -18,8 +18,8 @@ export interface Settings {
 // Rough conventions, not measurements. The calculation works the way an inertia dyno does (power from
 // accelerating a known mass), so that is the unscaled case; load-bearing dynos commonly read about a tenth lower.
 export const DYNOS = {
-	dynojet: { label: 'Dynojet scale', factor: 1 },
-	mustang: { label: 'Mustang scale', factor: 0.9 },
+	dynojet: { label: 'Dynojet scale (approx.)', factor: 1 },
+	mustang: { label: 'Mustang scale (approx.)', factor: 0.9 },
 	custom: { label: 'Custom scale', factor: NaN }
 };
 export const dynoFactor = (s: Settings) => (s.dyno === 'custom' ? s.customScale : DYNOS[s.dyno].factor);

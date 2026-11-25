@@ -60,7 +60,7 @@
 	let width = $state(0);
 	let hover = $state<number | null>(null);
 	let plot: uPlot | undefined;
-	const alpha = (l: Line, f: string | null) => (!f || l.id === f ? 1 : 0.18);
+	const alpha = (l: Line, f: string | null) => (!f || l.id === f ? 1 : 0.35);
 
 	function decorate(u: uPlot, bg: string, ink: string) {
 		const { ctx } = u;

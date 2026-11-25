@@ -1,3 +1,11 @@
+<script lang="ts" module>
+	// Focus only emphasises a run when it arrived by keyboard. A mouse user who changes a select
+	// should not leave the other runs dimmed after moving away.
+	let byKeyboard = false;
+	addEventListener('keydown', (e) => e.key === 'Tab' && (byKeyboard = true), true);
+	addEventListener('pointerdown', () => (byKeyboard = false), true);
+</script>
+
 <script lang="ts">
 	import type { DynoResult } from './dyno';
 	import Num from './Num.svelte';
@@ -41,8 +49,8 @@
 	class="run"
 	onpointerenter={() => onhover(true)}
 	onpointerleave={() => onhover(false)}
-	onfocusin={() => onhover(true)}
-	onfocusout={() => onhover(false)}
+	onfocusin={() => byKeyboard && onhover(true)}
+	onfocusout={() => byKeyboard && onhover(false)}
 >
 	<header>
 		<Swatch {color} shape={run.color} />
