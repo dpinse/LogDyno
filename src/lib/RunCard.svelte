@@ -37,7 +37,7 @@
 		onhover: (on: boolean) => void;
 	} = $props();
 
-	const ROLE_LABEL: Record<Role, string> = { time: 'Time', rpm: 'RPM', tps: 'Throttle', afr: 'Air-fuel', boost: 'Boost' };
+	const ROLE_LABEL: Record<Role, string> = { time: 'Time', rpm: 'RPM', speed: 'Wheel speed', tps: 'Throttle', afr: 'Air-fuel', boost: 'Boost' };
 	const vehicle = $derived(saved.vehicles.find((v) => v.id === run.vehicleId));
 	const factor = $derived(dynoFactor(saved.settings));
 	const power = $derived({ ...POWER[saved.settings.power], k: POWER[saved.settings.power].k * factor });
@@ -66,6 +66,20 @@
 			<div><b>{grouped(res.peakPower.value * power.k)}</b> {power.label}<span>@ {grouped(res.peakPower.rpm)} rpm</span></div>
 			<div><b>{grouped(res.peakTorque.value * torque.k)}</b> {torque.label}<span>@ {grouped(res.peakTorque.rpm)} rpm</span></div>
 		</div>
+		{#each res.slips as slip}
+			{@const pct = Math.max(1, Math.round(slip.share * 100))}
+			{@const span = `from ${grouped(slip.rpmFrom)} to ${grouped(slip.rpmTo)} rpm`}
+			<p class="err" role="status">
+				{#if slip.kind === 'wheelspin'}
+					Wheelspin: the fastest wheel ran up to {pct}% ahead of the slowest {span}. Power there is wrong unless Wheel speed is set to a wheel that is not driven.
+				{:else if slip.kind === 'dip'}
+					RPM fell {pct}% mid-pull, {span}. That is usually a slipping clutch or wheelspin, and power around it is wrong. This log has no speed column to check or correct it with.
+				{:else}
+					{slip.kind === 'clutch' ? 'Clutch slip' : 'Clutch slip or wheelspin'}: RPM ran up to {pct}% ahead of the wheels {span}.
+					{run.mapping.speed >= 0 ? 'Wheel speed is in use, so the curve is not affected by a slipping clutch.' : 'Power there is wrong. Choose a Wheel speed column under Columns to correct it.'}
+				{/if}
+			</p>
+		{/each}
 	{:else}
 		<p class="err" role="status">{err}</p>
 	{/if}
@@ -86,7 +100,7 @@
 		</label>
 		<label class="f">
 			<span>Smoothing <output>{run.level}</output></span>
-			<input type="range" min="0" max="10" bind:value={run.level} />
+			<input type="range" min="1" max="5" bind:value={run.level} />
 		</label>
 		<div class="f">
 			<span>RPM trim</span>

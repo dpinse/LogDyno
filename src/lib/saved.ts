@@ -88,8 +88,9 @@ export function parseSaved(json: string): Saved {
 	});
 	const mappings: Record<string, Mapping> = {};
 	for (const [key, m] of Object.entries<any>(o.mappings ?? {}))
-		if (m && ROLES.every((r) => Number.isInteger(m[r])))
-			mappings[key] = { time: m.time, rpm: m.rpm, tps: m.tps, afr: m.afr, boost: m.boost };
+		// Backups from before the wheel speed column have no `speed`.
+		if (m && ROLES.every((r) => Number.isInteger(m[r] ?? -1)))
+			mappings[key] = { time: m.time, rpm: m.rpm, speed: m.speed ?? -1, tps: m.tps, afr: m.afr, boost: m.boost };
 	return {
 		version: 1,
 		vehicles,

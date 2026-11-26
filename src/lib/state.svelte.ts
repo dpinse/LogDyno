@@ -16,11 +16,14 @@ function load(): Saved {
 
 export const saved = $state(load());
 
+/** False if the browser refused to store it. */
 export function persist() {
 	const json = JSON.stringify(saved);
 	try {
 		localStorage.setItem(KEY, json);
+		return true;
 	} catch {
 		// Private windows and full storage: the app still works for this visit.
+		return false;
 	}
 }

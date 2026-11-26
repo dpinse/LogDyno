@@ -4,10 +4,9 @@ Agreed on 2026-11-24 as later work, most valuable first within each group.
 
 ## Accuracy
 
-- [ ] **Test on real logs.** Everything so far ran on simulated pulls. Column detection, header parsing and time formats have not seen real logger exports. Sample logs are to be supplied.
-- [ ] **Rotating inertia.** The engine, flywheel and wheels are not accounted for, so results read low, most in lower gears. Add an effective-mass factor per gear with a sensible default.
-- [ ] **Wheelspin and shifts.** Wheelspin or a slipping clutch reads as power. Warn when RPM rises implausibly fast.
-- [ ] **Low smoothing is noisy.** Levels 0 and 1 wander a few hp at typical log rates. Raise the minimum window or default higher for slow loggers.
+- [ ] **Test on more real logs.** Three Hondata exports from one car have been run (2026-11-25); other loggers have not. No comparison numbers from another dyno tool have been checked yet.
+- [ ] **Gear check.** A gear change ends the pull, and clutch slip and wheelspin are reported (2026-11-25), but nothing checks that the gear chosen on the run is the gear the log was driven in.
+- [ ] **Level 1 is still wavy on real logs**, where RPM only updates about 30 times a second and jitters by 20 rpm. The scale became 1 to 5 on 2026-11-25 (was 0 to 10; the bottom levels were unusable), default 2. The last few hundred rpm of a pull still moves with the level.
 
 ## Features
 
@@ -22,4 +21,3 @@ Agreed on 2026-11-24 as later work, most valuable first within each group.
 
 - [ ] **Commit and deploy.** Steps are in the README.
 - [ ] **Recalculation.** Every run recalculates on any change; cache per run if large logs lag.
-- [ ] **Storage failures are silent.** If the browser refuses storage, runs simply do not persist.

@@ -13,6 +13,7 @@
 	const index = $derived(saved.vehicles.findIndex((v) => v.id === selected));
 	const tireUnit = $derived(Q.tire[saved.settings.system]);
 	const tireSize = $derived(tireDiameterM(tire.width, tire.aspect, tire.rim));
+	const ordinal = (n: number) => `${n}${['th', 'st', 'nd', 'rd'][n % 10 > 3 || (n > 10 && n < 14) ? 0 : n % 10]}`;
 
 	$effect(() => {
 		if (open) dialog?.showModal();
@@ -33,10 +34,11 @@
 		selected = saved.vehicles[0]?.id ?? '';
 	}
 
-	function gears(e: Event & { currentTarget: HTMLInputElement }) {
-		const list = e.currentTarget.value.split(/[\s,;]+/).filter(Boolean).map(Number);
-		if (list.length && list.every((g) => Number.isFinite(g) && g > 0)) saved.vehicles[index].gears = list;
-		else e.currentTarget.value = saved.vehicles[index].gears.join(', ');
+	function gear(g: number, e: Event & { currentTarget: HTMLInputElement }) {
+		const ratio = e.currentTarget.valueAsNumber;
+		// A blank or zero ratio would break every run in that gear, so put the old value back.
+		if (Number.isFinite(ratio) && ratio > 0) saved.vehicles[index].gears[g] = ratio;
+		else e.currentTarget.value = String(saved.vehicles[index].gears[g]);
 	}
 </script>
 
@@ -57,10 +59,18 @@
 				<label class="f wide"><span>Name</span><input bind:value={saved.vehicles[index].name} /></label>
 				<Num label="Weight" q="mass" min={1} bind:value={saved.vehicles[index].massKg} />
 				<Num label="Driver and cargo" q="mass" bind:value={saved.vehicles[index].occupantKg} />
-				<label class="f wide">
-					<span>Gear ratios, first gear first</span>
-					<input value={saved.vehicles[index].gears.join(', ')} onchange={gears} />
-				</label>
+				<fieldset class="wide">
+					<legend>Gear ratios</legend>
+					<div class="gears">
+						{#each saved.vehicles[index].gears as ratio, g}
+							<label class="f"><span>{ordinal(g + 1)}</span><input type="number" step="any" value={ratio} onchange={(e) => gear(g, e)} /></label>
+						{/each}
+					</div>
+					<div class="gear-count">
+						<button class="btn" onclick={() => saved.vehicles[index].gears.push(1)}>Add a gear</button>
+						<button class="btn" disabled={saved.vehicles[index].gears.length < 2} onclick={() => saved.vehicles[index].gears.pop()}>Remove last gear</button>
+					</div>
+				</fieldset>
 				<Num label="Final drive ratio" min={0.01} bind:value={saved.vehicles[index].finalDrive} />
 				<Num label="Tire diameter" q="tire" min={0.01} bind:value={saved.vehicles[index].tireDiameterM} />
 				<fieldset class="wide">
@@ -159,6 +169,17 @@
 	}
 	.wide {
 		grid-column: 1 / -1;
+	}
+	.gears {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+		gap: 8px;
+		margin-top: 8px;
+	}
+	.gear-count {
+		display: flex;
+		gap: 8px;
+		margin-top: 8px;
 	}
 	.tire {
 		display: grid;
