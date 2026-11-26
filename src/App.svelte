@@ -16,6 +16,13 @@
 	// Parsed logs stay out of reactive state: they are large and never change after loading.
 	const tables = new Map<string, Table>();
 	let problems = $state<string[]>([]);
+	// Said once per visit: private windows and full disks refuse storage, and the work would vanish on reload without a word.
+	let warned = false;
+	function unsaved() {
+		if (warned) return;
+		warned = true;
+		problems.push('This browser is not storing anything for this site (private window, storage turned off, or disk full). Runs, logs and vehicle changes will be gone when the page is closed or reloaded. Use Backup to keep your vehicles.');
+	}
 	let vehiclesOpen = $state(false);
 	let dragging = $state(false);
 	/** The run whose card or legend entry is pointed at; its lines are emphasised on every chart. */
@@ -28,17 +35,19 @@
 			for (const run of (await store.get<Run[]>('runs')) ?? []) {
 				const table = await store.get<Table>(`table:${run.id}`);
 				if (!table || typeof run?.id !== 'string' || !run.mapping) continue;
+				run.mapping.speed ??= -1; // runs stored before the wheel speed column existed
+				run.level = Math.min(5, Math.max(1, run.level)); // and before smoothing ran from 1 to 5
 				tables.set(run.id, table);
 				runs.push(run);
 			}
 		} catch {
-			// shortcut: storage that is unavailable or full is ignored, so runs just do not persist; tell the user if this turns out to confuse people.
+			unsaved();
 		}
 		restored = true;
 	})();
 	$effect(() => {
 		const snapshot = $state.snapshot(runs);
-		if (restored) store.set('runs', snapshot).catch(() => {});
+		if (restored) store.set('runs', snapshot).catch(unsaved);
 	});
 	let logPicker: HTMLInputElement | undefined = $state();
 	let backupPicker: HTMLInputElement | undefined = $state();
@@ -51,7 +60,9 @@
 	systemDark.addEventListener('change', (e) => (prefersDark = e.matches));
 	const dark = $derived(saved.settings.theme === 'dark' || (saved.settings.theme === 'system' && prefersDark));
 
-	$effect(() => persist());
+	$effect(() => {
+		if (!persist()) unsaved();
+	});
 	$effect(() => {
 		document.documentElement.dataset.theme = saved.settings.theme;
 	});
@@ -140,7 +151,7 @@
 				const table = parseLog(await file.text());
 				const id = crypto.randomUUID();
 				tables.set(id, table);
-				store.set(`table:${id}`, table).catch(() => {});
+				store.set(`table:${id}`, table).catch(unsaved);
 				const vehicle = saved.vehicles[0];
 				runs.push({
 					id,
@@ -150,7 +161,7 @@
 					gear: Math.min(2, (vehicle?.gears.length ?? 1) - 1),
 					color: runs.length ? Math.max(...runs.map((r) => r.color)) + 1 : 0,
 					show: true,
-					level: 3,
+					level: 2,
 					rpmMin: null,
 					rpmMax: null,
 					tempC: 25,

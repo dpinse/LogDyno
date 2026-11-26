@@ -8,15 +8,17 @@ What LogDyno is, how it calculates, and why. Product context is in [PRODUCT.md](
 - **Pull**: the stretch of a log where RPM rises at full throttle in one gear.
 - **Run**: one loaded log plus its settings (vehicle, gear, smoothing, RPM trim, air conditions).
 - **Vehicle**: the numbers the calculation needs: weight, driver and cargo weight, gear ratios, final drive, tire diameter, drag coefficient, frontal area, rolling resistance.
-- **Smoothing level**: 0 to 10. Level *n* fits RPM against time over a window of ±0.1·*n* seconds.
+- **Smoothing level**: 1 to 5, default 2. Level *n* fits RPM against time over a window of ±4%·*n* of the pull's duration, so one level resolves the same slice of the rev range in any gear.
 - **Wheel power**: power at the tires. LogDyno does not estimate crank power.
 
 ## Calculation
 
 All internal values are SI (`src/lib/dyno.ts`); units are converted only for display (`src/lib/units.ts`).
 
-1. **Find the pull.** Fit RPM against time; keep samples where RPM is rising and, if a throttle column is mapped, throttle is at least 95% of its maximum. Take the contiguous stretch with the largest RPM gain.
-2. **Smooth and differentiate in one step.** For each sample, fit a parabola to RPM over the smoothing window. The fit gives the smoothed RPM and its rate of change. This works with uneven sample spacing. It is a parabola and not a straight line because RPM against time bends during a pull: at the two ends of the pull the window only reaches one way, and a straight line there made more smoothing read as more power at the top of the rev range.
+1. **Find the pull.** Fit RPM against time; keep samples where RPM is rising and, if a throttle column is mapped, throttle is at least 95% of its maximum. Take the stretch with the largest RPM gain. A dip of under half a second that stays within 10% of the highest RPM so far does not end the stretch: a clutch that slips and grips again does that mid-pull.
+2. **Smooth and differentiate in one step.** For each sample, fit a parabola to RPM over the smoothing window, with tricube weights so samples fade out towards the window's edge (equal weights drew a jagged curve on real logs). Near either end of the pull the window keeps its full width by reaching further the other way; a window that halved there let the last few hundred rpm swing up at one level and down at the next. The fit gives the smoothed RPM and its rate of change. This works with uneven sample spacing. It is a parabola and not a straight line because RPM against time bends during a pull: at the two ends of the pull the window only reaches one way, and a straight line there made more smoothing read as more power at the top of the rev range.
+   If a wheel speed column is chosen, it is used here in place of RPM, scaled by the median ratio of RPM to wheel speed across the pull. The unit of the column and the tire size it was measured with therefore do not matter.
+   Slip is reported on the run whether or not a column is chosen. With two or more wheel speed columns in the log: RPM more than 2.5% above its median ratio to the fastest wheel is clutch slip, and the fastest wheel more than 5% above its median ratio to the slowest is wheelspin; each must hold for 0.3 s unbroken. This needs no knowledge of which wheels are driven. With one speed column the two cannot be told apart and are reported together. With none, an RPM fall of over 1% mid-pull is reported as a probable slip.
 3. **Road speed** `v = rpm · π · tire diameter / (60 · gear · final drive)`.
 4. **Force** `F = m·a + ½·ρ·Cd·A·v² + Crr·m·g`, with `ρ = P / (287.05 · T)` from the run's air temperature and pressure.
 5. **Power** `P = F · v`; **torque** `T = P / ω` at the engine.
@@ -25,14 +27,16 @@ All internal values are SI (`src/lib/dyno.ts`); units are converted only for dis
 
 The test in `src/lib/dyno.test.ts` simulates a pull from a known power curve and checks the result is within 3% of it.
 
-Known limits: rotating inertia of the engine and wheels is ignored, so results read slightly low in lower gears. The road is assumed flat and windless. Wheelspin or a slipping clutch looks like power.
+Known limits: rotating inertia of the engine and wheels is left out, so runs in lower gears read lower. The road is assumed flat and windless. Wheelspin or a slipping clutch looks like power, unless a wheel speed column from an undriven wheel is chosen.
 
 ## Decisions
 
 | Decision | Why |
 |---|---|
 | Inspired by desktop road-dyno tools, not a clone of one | The goal is the idea, with known calculation flaws fixed. No third-party name, data or file format is used. |
-| RPM-based, not speed-based | RPM is in every log and is cleaner than logged speed. It makes gear ratio and tire size matter. |
+| RPM-based by default, with an optional wheel speed column | RPM is in every log and is usually cleaner than logged speed. But real logs (a boosted Civic Si, 2026-11-25) showed the clutch slipping 4 to 8% as boost came in, which read as a 100 hp spike and then a hole. Wheel speed from an undriven wheel is immune. The column is never chosen automatically, because which wheels are undriven depends on the car. |
+| Smoothing runs 1 to 5 | It ran 0 to 10 until 2026-11-25. On real logs, where values update about 30 times a second, the bottom levels were unusable and neighbouring levels were hard to tell apart. |
+| Rotating inertia is left out | Adding the wheels and engine as extra mass was tried on 2026-11-25 and dropped: it raised third and fourth gear results by 5 to 8%, above what an inertia dyno reports, since a Dynojet does not count the power that spins up the engine and driven wheels either. |
 | Fit-then-differentiate smoothing | Differencing adjacent samples is very noisy at high log rates. |
 | Rolling resistance and density-scaled drag included | Cheap, and worth several horsepower at speed. Grade, humidity and drivetrain loss are left out because few people have the inputs. |
 | Vehicles entered by hand | No car database is bundled. |

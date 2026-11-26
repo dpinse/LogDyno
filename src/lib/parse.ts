@@ -8,7 +8,7 @@ export interface Table {
 	decimalComma: boolean;
 }
 
-export const ROLES = ['time', 'rpm', 'tps', 'afr', 'boost'] as const;
+export const ROLES = ['time', 'rpm', 'speed', 'tps', 'afr', 'boost'] as const;
 export type Role = (typeof ROLES)[number];
 /** Column index per role; -1 means "not in this log". */
 export type Mapping = Record<Role, number>;
@@ -59,22 +59,25 @@ export function parseLog(text: string): Table {
 const PATTERNS: Record<Role, RegExp[]> = {
 	time: [/^time\b/, /time|seconds|elapsed|logentry/],
 	rpm: [/^(engine )?rpm\b|^engine speed/, /rpm|engine speed/],
+	// Only used to spot clutch slip unless the person picks a column: which wheels are undriven depends on the car.
+	speed: [/^abs\b|wheel.?speed/, /^vss\b|vehicle speed|^speed\b/],
 	tps: [/pedal/, /throttle|tps/],
-	afr: [/afr|a\/f|air.?fuel/, /lambda|wideband|\bwb/],
+	afr: [/afr|a\/f|air.?fuel|^af$/, /lambda|wideband|\bwb/],
 	boost: [/boost/, /manifold.*press|\bmap\b|\bmrp\b/]
 };
 const NOT_MEASURED = /target|desired|command|request|limit|correct|trim|learn|error|set ?point/;
 
+function find(lower: string[], role: Role) {
+	for (const re of PATTERNS[role]) {
+		const i = lower.findIndex((h) => re.test(h) && !NOT_MEASURED.test(h));
+		if (i >= 0) return i;
+	}
+	return -1;
+}
+
 export function guessMapping(headers: string[]): Mapping {
 	const lower = headers.map((h) => h.toLowerCase());
-	const find = (role: Role) => {
-		for (const re of PATTERNS[role]) {
-			const i = lower.findIndex((h) => re.test(h) && !NOT_MEASURED.test(h));
-			if (i >= 0) return i;
-		}
-		return -1;
-	};
-	return { time: find('time'), rpm: find('rpm'), tps: find('tps'), afr: find('afr'), boost: find('boost') };
+	return { time: find(lower, 'time'), rpm: find(lower, 'rpm'), speed: -1, tps: find(lower, 'tps'), afr: find(lower, 'afr'), boost: find(lower, 'boost') };
 }
 
 export function toSamples(table: Table, m: Mapping): Samples {
@@ -102,7 +105,12 @@ export function toSamples(table: Table, m: Mapping): Samples {
 	// Nobody logs a pull at one sample every 2 s, so large steps mean milliseconds or microseconds.
 	const scale = median > 2000 ? 1e-6 : median > 2 ? 1e-3 : 1;
 
-	const s: Samples = { t: [], rpm: [], tps: m.tps < 0 ? null : [], afr: m.afr < 0 ? null : [], boost: m.boost < 0 ? null : [] };
+	const s: Samples = { t: [], rpm: [], speed: null, bySpeed: m.speed >= 0, tps: m.tps < 0 ? null : [], afr: m.afr < 0 ? null : [], boost: m.boost < 0 ? null : [] };
+	const speedCol = m.speed >= 0 ? m.speed : find(table.headers.map((h) => h.toLowerCase()), 'speed');
+	if (speedCol >= 0) s.speed = [];
+	// Every wheel speed sensor, so the maths can tell clutch slip from wheelspin.
+	const wheelCols = table.headers.flatMap((h, i) => (PATTERNS.speed[0].test(h.toLowerCase()) && !NOT_MEASURED.test(h.toLowerCase()) ? [i] : []));
+	if (wheelCols.length > 1) s.wheels = wheelCols.map(() => []);
 	let last = -Infinity;
 	table.rows.forEach((r, i) => {
 		const t = raw[i] * scale;
@@ -111,6 +119,8 @@ export function toSamples(table: Table, m: Mapping): Samples {
 		last = t;
 		s.t.push(t);
 		s.rpm.push(rpm);
+		s.speed?.push(num(r[speedCol]));
+		s.wheels?.forEach((w, j) => w.push(num(r[wheelCols[j]])));
 		s.tps?.push(num(r[m.tps]));
 		s.afr?.push(num(r[m.afr]));
 		s.boost?.push(num(r[m.boost]));
