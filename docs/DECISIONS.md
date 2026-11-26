@@ -40,7 +40,7 @@ Known limits: rotating inertia of the engine and wheels is left out, so runs in 
 | Fit-then-differentiate smoothing | Differencing adjacent samples is very noisy at high log rates. |
 | Rolling resistance and density-scaled drag included | Cheap, and worth several horsepower at speed. Grade, humidity and drivetrain loss are left out because few people have the inputs. |
 | Vehicles entered by hand | No car database is bundled. |
-| Columns detected by name, correctable, remembered per header set | Works with loggers nobody listed in advance. |
+| Columns detected by name, correctable, remembered per header set | Works with loggers nobody listed in advance. There is no per-logger code: the name patterns were widened on 2026-11-25 after running public sample logs from some twenty loggers, among them COBB Accessport, bootmod3, MHD, JB4, EcuTek, HP Tuners, Holley, RomRaider, Link and MegaSquirt. Those logs are not kept in the repository; some carry a VIN or GPS track. |
 | Runs share an RPM axis every 25 rpm | Lets the readout compare all runs at one engine speed. |
 | Loaded logs are stored in IndexedDB, small settings in localStorage | A reload should not lose a session. Logs are too large for localStorage. The JSON backup covers vehicles, settings and column mappings, not logs. |
 | Plain Svelte 5 + Vite, no SvelteKit | One screen, no routes, no server rendering. |

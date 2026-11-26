@@ -23,3 +23,6 @@ vite.config.ts.timestamp-*
 /.impeccable/*
 !/.impeccable/design.json
 !/.impeccable/surfaces/
+
+# Third-party sample logs for local testing; some carry a VIN or GPS track, so never commit them.
+/samples
